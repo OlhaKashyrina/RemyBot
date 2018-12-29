@@ -8,7 +8,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 
-public class ObjectDao extends Dao<Object> {
+public class ObjectDao extends  Dao<Object>{
+
     @Override
     public ArrayList<Object> getAll(String url) {
         RestTemplate restTemplate = new RestTemplate();
