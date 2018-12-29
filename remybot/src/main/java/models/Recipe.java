@@ -8,6 +8,9 @@ import entities.Object;
 import java.util.ArrayList;
 import java.util.List;
 
+import static models.Constants.URL_OBJECTS;
+import static models.Constants.URL_PARAMS;
+
 public class Recipe {
     private Long recipeId;
     private String recipeName;
@@ -30,8 +33,8 @@ public class Recipe {
 
     public static List<Recipe> getAllPecipes()
     {
-        objects = objectDao.getAll("http://localhost:8080/botapi/objects");
-        params = paramDao.getAll("http://localhost:8080/botapi/params");
+        objects = objectDao.getAll(URL_OBJECTS);
+        params = paramDao.getAll(URL_PARAMS);
         List<Recipe> recipes = new ArrayList<>();
         for(Object obj : objects)
         {
@@ -50,6 +53,18 @@ public class Recipe {
             }
         }
         return recipes;
+    }
+
+    public List<Ingredient> getIngredients()
+    {
+        List<Ingredient> ingredients = new ArrayList<>();
+        List<IngredientsRecipes> irs = IngredientsRecipes.getAllIngredientsRecipes();
+        for(IngredientsRecipes ir : irs)
+        {
+            if(ir.getRecipeId().equals(this.recipeId))
+                ingredients.add(ir.getIngr());
+        }
+        return ingredients;
     }
 
     public Long getRecipeId() {

@@ -8,6 +8,9 @@ import entities.Object;
 import java.util.ArrayList;
 import java.util.List;
 
+import static models.Constants.URL_OBJECTS;
+import static models.Constants.URL_PARAMS;
+
 public class User {
     private Long userId;
     private String userName;
@@ -28,8 +31,8 @@ public class User {
 
     public static List<User> getAllUsers()
     {
-        objects = objectDao.getAll("http://localhost:8080/botapi/objects");
-        params = paramDao.getAll("http://localhost:8080/botapi/params");
+        objects = objectDao.getAll(URL_OBJECTS);
+        params = paramDao.getAll(URL_PARAMS);
         List<User> users = new ArrayList<>();
         for (Object obj : objects)
         {
