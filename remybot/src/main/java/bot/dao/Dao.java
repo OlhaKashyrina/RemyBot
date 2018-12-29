@@ -1,4 +1,4 @@
-package dao;
+package bot.dao;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

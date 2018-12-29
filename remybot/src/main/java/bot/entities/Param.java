@@ -1,4 +1,4 @@
-package entities;
+package bot.entities;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

@@ -1,15 +1,15 @@
-package models;
+package bot.models;
 
-import dao.ObjectDao;
-import dao.ParamDao;
-import entities.Param;
-import entities.Object;
+import bot.dao.ObjectDao;
+import bot.dao.ParamDao;
+import bot.entities.Param;
+import bot.entities.Object;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static models.Constants.URL_OBJECTS;
-import static models.Constants.URL_PARAMS;
+import static bot.models.Constants.URL_OBJECTS;
+import static bot.models.Constants.URL_PARAMS;
 
 
 public class Ingredient {

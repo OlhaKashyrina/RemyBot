@@ -1,4 +1,4 @@
-package models;
+package bot.models;
 
 public class Complaint {
     private Long complaintId;

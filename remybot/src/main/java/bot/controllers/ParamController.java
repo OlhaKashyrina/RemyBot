@@ -1,11 +1,11 @@
-package controllers;
+package bot.controllers;
 
-import entities.Param;
-import exceptions.ResourceNotFoundException;
+import bot.entities.Param;
+import bot.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import repositories.ParamRepository;
+import bot.repositories.ParamRepository;
 
 import javax.validation.Valid;
 import java.util.List;

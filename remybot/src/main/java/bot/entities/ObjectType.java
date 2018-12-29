@@ -1,11 +1,10 @@
-package entities;
+package bot.entities;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "object_types")

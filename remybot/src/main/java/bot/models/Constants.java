@@ -1,4 +1,4 @@
-package models;
+package bot.models;
 
 public class Constants {
     public final static String URL_OBJECTS = "http://localhost:8080/botapi/objects";

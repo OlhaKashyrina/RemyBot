@@ -1,39 +1,38 @@
-package entities;
+package bot.entities;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "attributes")
+@Table(name = "objects")
 @EntityListeners(AuditingEntityListener.class)
-public class Attribute implements Serializable {
+public class Object implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long attr_id;
+    private Long object_id;
 
-    @NotBlank
     private String name;
 
     @NotNull
     private Long object_type_id;
 
-    public Attribute(String name, Long id)
+    public Object(String name, Long id)
     {
         this.name = name;
         object_type_id = id;
     }
 
-    public  Attribute(){}
+    public  Object(){}
 
-    public Long getAttr_id() {
-        return attr_id;
+    public Long getObject_id() {
+        return object_id;
     }
 
-    public void setAttr_id(Long attr_id) {
-        this.attr_id = attr_id;
+    public void setObject_id(Long object_id) {
+        this.object_id = object_id;
     }
 
     public String getName() {
@@ -50,5 +49,10 @@ public class Attribute implements Serializable {
 
     public void setObject_type_id(Long object_type_id) {
         this.object_type_id = object_type_id;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

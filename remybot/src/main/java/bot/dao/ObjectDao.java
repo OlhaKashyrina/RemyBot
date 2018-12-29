@@ -1,6 +1,6 @@
-package dao;
+package bot.dao;
 
-import entities.Param;
+import bot.entities.Object;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -8,17 +8,17 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 
-public class ParamDao extends Dao<Param> {
+public class ObjectDao extends  Dao<Object>{
 
     @Override
-    public ArrayList<Param> getAll(String url) {
+    public ArrayList<Object> getAll(String url) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<ArrayList<Param>> response = restTemplate.exchange(
+        ResponseEntity<ArrayList<Object>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<ArrayList<Param>>(){});
-        ArrayList<Param> result = response.getBody();
+                new ParameterizedTypeReference<ArrayList<Object>>(){});
+        ArrayList<Object> result = response.getBody();
         return  result;
     }
 }
