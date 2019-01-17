@@ -101,7 +101,7 @@ public class Recipe {
 
             Object ir = new Object(null, 6L);
             Long irId = objectDao.insert(URL_OBJECTS, ir, Object.class).getObject_id();
-            Param recId = new Param(null, this.recipeId, null, 10L, irId);
+            Param recId = new Param(null, recipe.getObject_id(), null, 10L, irId);
             Param ingrId = new Param(null, currId, null, 11L, irId);
             paramDao.insert(URL_PARAMS, recId, Param.class);
             paramDao.insert(URL_PARAMS, ingrId, Param.class);
@@ -109,7 +109,7 @@ public class Recipe {
 
         Object ur = new Object(null, 5L);
         Long urId = objectDao.insert(URL_OBJECTS, ur, Object.class).getObject_id();
-        Param recId = new Param(null, this.recipeId, null, 9L, urId);
+        Param recId = new Param(null, recipe.getObject_id(), null, 9L, urId);
         Param userId = new Param(null, user.getUserId(), null, 8L, urId);
         paramDao.insert(URL_PARAMS, recId, Param.class);
         paramDao.insert(URL_PARAMS, userId, Param.class);
@@ -162,9 +162,6 @@ public class Recipe {
 
     @Override
     public String toString() {
-        String res = "";
-        for(int i = 0; i < steps.length; i++)
-            res += "\n\t" + steps[i];
-        return this.recipeName + res;
+        return this.recipeName;
     }
 }
