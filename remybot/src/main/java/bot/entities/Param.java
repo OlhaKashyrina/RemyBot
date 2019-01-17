@@ -24,7 +24,7 @@ public class Param implements Serializable {
     @NotNull
     private Long object_id;
 
-    public Param(String text_value, Long number_value, byte bool_value, Long attr_id, Long object_id)
+    public Param(String text_value, Long number_value, Byte bool_value, Long attr_id, Long object_id)
     {
         this.text_value = text_value;
         this.number_value = number_value;

@@ -27,13 +27,13 @@ public class Dao<T> {
         return  result;
     }
 
-    public void insert(String url, T object, Class<T> type)
+    public T insert(String url, T object, Class<T> type)
     {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<T> request = new HttpEntity<T>(object);
         ResponseEntity<T> response = restTemplate
                 .exchange(url, HttpMethod.POST, request, type);
-
+        return response.getBody();
     }
 
     public void update(String url, T updatedInstance)

@@ -1,5 +1,6 @@
 package bot.models;
 
+import bot.BotState;
 import bot.dao.ObjectDao;
 import bot.dao.ParamDao;
 import bot.entities.Param;
@@ -15,6 +16,7 @@ public class User {
     private Long userId;
     private String userName;
     private boolean isAdmin;
+    private BotState state;
 
 
     private static ObjectDao objectDao = new ObjectDao();
@@ -22,11 +24,14 @@ public class User {
     private static List<Object> objects;
     private static List<Param> params;
 
+    public User(){ state = BotState.Default; }
+
     public User(Long id, String name, boolean admin)
     {
         userId = id;
         userName = name;
         isAdmin = admin;
+        state = BotState.Default;
     }
 
     public static List<User> getAllUsers()
@@ -52,6 +57,16 @@ public class User {
         return users;
     }
 
+    public static User getUserByName(String name, List<User> users)
+    {
+        User user = new User();
+        for(User u : users){
+            if(u.userName.equals(name))
+                user = u;
+        }
+        return user;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -74,6 +89,14 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public BotState getState() {
+        return state;
+    }
+
+    public void setState(BotState state) {
+        this.state = state;
     }
 
     @Override

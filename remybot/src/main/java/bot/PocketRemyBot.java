@@ -21,7 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PocketRemyBot extends TelegramLongPollingBot {
-    
+
+    private static List<User> users = User.getAllUsers();
+
+    User currentUser;
+    String recipeName;
+    String[] recipeIngrs;
+    String recipeSteps;
+
     //example Start
     public static void main(String[] args) {
         ApiContextInitializer.init();
@@ -84,6 +91,29 @@ public class PocketRemyBot extends TelegramLongPollingBot {
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
             String m = message.getText();
+            currentUser = User.getUserByName(message.getChat().getUserName(), users);
+
+            switch (currentUser.getState())
+            {
+                case EnterName:
+                    recipeName = m;
+                    currentUser.setState(BotState.EnterIngredients);
+                    sendTextMsg(message, "Введите ингредиенты через запятую");
+                    break;
+                case EnterIngredients:
+                    recipeIngrs = m.split(",");
+                    currentUser.setState(BotState.EnterSteps);
+                    sendTextMsg(message, "Введите шаги приготовления через ;");
+                    break;
+                case EnterSteps:
+                    recipeSteps = m;
+                    currentUser.setState(BotState.Default);
+                    Recipe newRecipe = new Recipe(0L, recipeName, recipeSteps, null);
+                    //System.out.println(newRecipe);
+                    newRecipe.addRecipe(recipeIngrs, currentUser);
+                    sendTextMsg(message, "Готово!");
+                    break;
+            }
 
             if(m.toLowerCase().contains("привет"))
             {
@@ -110,6 +140,12 @@ public class PocketRemyBot extends TelegramLongPollingBot {
             if(m.toLowerCase().contains("рецепты"))
             {
                 ChooseRecipe(message);
+            }
+
+            if(m.equals("/addrecipe"))
+            {
+                currentUser.setState(BotState.EnterName);
+                sendTextMsg(message, "Введите название рецепта");
             }
         }
         if(update.hasCallbackQuery()) {
